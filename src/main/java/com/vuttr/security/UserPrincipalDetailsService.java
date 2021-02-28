@@ -1,7 +1,5 @@
 package com.vuttr.security;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +15,7 @@ public class UserPrincipalDetailsService implements UserDetailsService{
 	@Autowired
 	UserRepository repository;
 	
+	/* Search the database by email and switch to UserDetails */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = repository.findByEmail(username);

@@ -15,6 +15,7 @@ import com.vuttr.repositories.UserRepository;
 
 /* Keep this comment annotated so as not to insert data into the database */
 //@Configuration
+@SuppressWarnings("unused")
 public class UserMock implements CommandLineRunner{
 	
 	@Autowired
@@ -39,12 +40,12 @@ public class UserMock implements CommandLineRunner{
 		
 		/* Insert Users Database */		
 		User u1 = new User(null, "Thiago Vilarinho Lemes", "thiago", passwordEncoder.encode("123"), UserStatus.ACTIVE, r1);
-		User u2 = new User(null, "Carina Lima", "carina", "123", UserStatus.ACTIVE, r2);
-		User u3 = new User(null, "Spack Rella", "spack.rella", "123", UserStatus.BLOCKED, r3);
-		User u4 = new User(null, "Rosimar Vilarinho", "rosimar.lemes", "123", UserStatus.SUSPENDED, r3);
-		User u5 = new User(null, "Juscelino Lemes", "juscelino.lemes", "123", UserStatus.BLOCKED, r3);
-		User u6 = new User(null, "Carol V.", "carol.lemes", "123", UserStatus.BLOCKED, r2);
-		User u7 = new User(null, "Luíz Souza", "luiz.fulano", "123", UserStatus.BLOCKED, r2);
+		User u2 = new User(null, "Carina Lima", "carina", passwordEncoder.encode("123"), UserStatus.ACTIVE, r2);
+		User u3 = new User(null, "Spack Rella", "spack.rella", passwordEncoder.encode("123"), UserStatus.BLOCKED, r3);
+		User u4 = new User(null, "Rosimar Vilarinho", "rosimar.lemes", passwordEncoder.encode("123"), UserStatus.SUSPENDED, r3);
+		User u5 = new User(null, "Juscelino Lemes", "juscelino.lemes", passwordEncoder.encode("123"), UserStatus.BLOCKED, r3);
+		User u6 = new User(null, "Carol V.", "carol.lemes", passwordEncoder.encode("123"), UserStatus.BLOCKED, r2);
+		User u7 = new User(null, "Luíz Souza", "luiz.fulano", passwordEncoder.encode("123"), UserStatus.BLOCKED, r2);
 		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7));	
 		
 		

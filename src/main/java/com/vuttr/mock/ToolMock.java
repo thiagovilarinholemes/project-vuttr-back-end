@@ -11,6 +11,7 @@ import com.vuttr.repositories.ToolRepository;
 
 /* Keep this comment annotated so as not to insert data into the database */
 //@Component
+@SuppressWarnings("unused")
 public class ToolMock implements CommandLineRunner{
 
 	@Autowired

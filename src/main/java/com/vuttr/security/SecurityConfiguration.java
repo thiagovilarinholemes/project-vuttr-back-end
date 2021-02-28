@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -25,14 +24,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserRepository userRepository;
 	
-    //Configurations for authentication
+    /* Configurations for authentication - login */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     	auth.userDetailsService(userPrincipalDetailsService);//.passwordEncoder(new BCryptPasswordEncoder());
 
     }
 
-    //Configuration for authorization
+    /* Configuration for authorization - access */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -53,23 +52,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
-    //Configuration for static resources
+    /* Configuration for static resources - CSS, Materialize... */
     @Override
     public void configure(WebSecurity web) throws Exception {
     }
     
+    /* Encryption type */
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-//    @Bean
-//    DaoAuthenticationProvider authenticationProvider(){
-//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-//        daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
-//
-//        return daoAuthenticationProvider;
-//    }
-	
+    }	
 }

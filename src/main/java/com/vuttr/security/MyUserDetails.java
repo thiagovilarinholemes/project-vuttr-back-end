@@ -11,7 +11,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class MyUserDetails implements UserDetails {
-    private User user;
+	private static final long serialVersionUID = 1L;
+	
+	private User user;
 
     public MyUserDetails(User user){
         this.user = user;

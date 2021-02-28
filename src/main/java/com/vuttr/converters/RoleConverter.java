@@ -15,8 +15,10 @@ public class RoleConverter {
 	public RoleDTO entityToDto(Role role) {
 		RoleDTO dto = new RoleDTO();
 		dto.setId(role.getId());
-		dto.setNameRole(role.getNameRole());
+		dto.setName(role.getName());
 		dto.setDescription(role.getDescription());		
+		dto.setUsers(role.getUsers());
+		dto.setPermissions(role.getPermissions());
 		return dto;
 	}
 	
@@ -28,8 +30,10 @@ public class RoleConverter {
 	public Role dtoToEntity(RoleDTO dto) {
 		Role role = new Role();
 		role.setId(dto.getId());
-		role.setNameRole(dto.getNameRole());
+		role.setName(dto.getName());
 		role.setDescription(dto.getDescription());		
+		role.setUsers(dto.getUsers());
+		role.setPermissions(dto.getPermissions());
 		return role;
 	}
 	

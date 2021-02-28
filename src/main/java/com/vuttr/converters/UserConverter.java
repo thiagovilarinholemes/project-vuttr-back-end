@@ -2,7 +2,6 @@ package com.vuttr.converters;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -25,8 +24,7 @@ public class UserConverter implements Serializable{
 		dto.setRole(user.getRole());
 		return dto;
 	}
-	
-	
+		
 	public List<UserDTO> entityToDto(List<User> user ){
 		return	user.stream().map(x -> entityToDto(x)).collect(Collectors.toList());
 	}

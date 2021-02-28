@@ -24,10 +24,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
-
-    /* Trigger when we issue POST request to /login
-    We also need to pass in {"username":"dan", "password":"dan123"} in the request body
-     */
+    
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 
@@ -50,10 +47,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         return auth;
     }
-
-    //-----------------------------------------------------------------------------------------------------------------------------
-
-    //-----------------------------------------------------------------------------------------------------------------------------
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
