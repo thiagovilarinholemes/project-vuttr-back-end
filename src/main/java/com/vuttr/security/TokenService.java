@@ -1,0 +1,44 @@
+package com.vuttr.security;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
+
+import com.vuttr.models.User;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+@Service
+public class TokenService {
+
+	
+	public String generateToken(Authentication authentication) {
+
+		User usuario = (User) authentication.getPrincipal();
+
+		Date now = new Date();
+		Date exp = new Date(now.getTime() + JwtProperties.EXPIRATION_TIME);
+
+		return Jwts.builder().setIssuer("IRS").setSubject(usuario.getId().toString()).setIssuedAt(new Date())
+				.setExpiration(exp).signWith(SignatureAlgorithm.HS256, JwtProperties.SECRET).compact();
+	}
+
+	public boolean isTokenValid(String token) {
+		try {
+			Jwts.parser().setSigningKey(JwtProperties.SECRET).parseClaimsJws(token);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public Integer getTokenId(String token) {
+		Claims body = Jwts.parser().setSigningKey(JwtProperties.SECRET).parseClaimsJws(token).getBody();
+		return Integer.valueOf(body.getSubject());
+	}
+}
+	
