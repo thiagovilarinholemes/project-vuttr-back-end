@@ -11,7 +11,6 @@ import com.vuttr.dto.RoleDTO;
 import com.vuttr.exceptions.DatabaseException;
 import com.vuttr.exceptions.ResourceNotFoundException;
 import com.vuttr.models.Role;
-import com.vuttr.models.Tool;
 import com.vuttr.repositories.RoleRepository;
 import com.vuttr.services.RoleService;
 
@@ -67,7 +66,7 @@ public class RoleServiceImp implements RoleService{
 	@Override
 	@Transactional
 	public RoleDTO create(RoleDTO dto) {
-		Role role = new Role(null, dto.getNameRole(), dto.getDescription());
+		Role role = new Role(null, dto.getName(), dto.getDescription());
 		role = repository.save(role);
 		return converter.entityToDto(role);
 	}
@@ -82,7 +81,7 @@ public class RoleServiceImp implements RoleService{
 
             /** Call Method updateDate() */
             updateData(entity, dto);
-            Role role = new Role(null, entity.getNameRole(), entity.getDescription());
+            Role role = new Role(null, entity.getName(), entity.getDescription());
             role = repository.save(entity);
             return converter.entityToDto(entity);
 		} catch (EntityNotFoundException e){
@@ -91,8 +90,8 @@ public class RoleServiceImp implements RoleService{
 	}
 	/* Method Update Data */
 	private void updateData(Role entity, RoleDTO obj) {
-        entity.setNameRole(obj.getNameRole());
-        entity.setDescription(obj.getNameRole());
+        entity.setName(obj.getName());
+        entity.setDescription(obj.getName());
 	}
 
 	/* Delete Role */

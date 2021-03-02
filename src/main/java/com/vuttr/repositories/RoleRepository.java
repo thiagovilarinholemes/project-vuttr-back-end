@@ -17,7 +17,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>{
 	Page<Role> findAllRoleCustom(Pageable pageable);
 
 	/* Query Role by Name */
-	@Query(value = "SELECT * FROM tb_role WHERE unaccent(name_role) ilike unaccent('%' || ?1 || '%')", 
+	@Query(value = "SELECT * FROM tb_role WHERE unaccent(name) ilike unaccent('%' || ?1 || '%')", 
 			nativeQuery = true)
 	Page<Role> findByNameRoleCustom(String name, Pageable pageable);
 	

@@ -1,6 +1,11 @@
 package com.vuttr.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.NotBlank;
+
+import com.vuttr.models.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +23,10 @@ public class PermissionDTO {
    
 	@NotBlank(message = "O campo DESCRIÇÃO é obrigatório!")
     private String description;
+	
+	
+	private Set<Role> roles = new HashSet<>();
+	
 
 
 }

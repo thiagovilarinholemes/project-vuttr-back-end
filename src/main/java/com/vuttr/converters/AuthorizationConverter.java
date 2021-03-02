@@ -16,7 +16,8 @@ public class AuthorizationConverter {
 		AuthorizationDTO dto = new AuthorizationDTO();
 		dto.setId(authorization.getId());
 		dto.setName(authorization.getName());
-		dto.setDescription(authorization.getDescription());				
+		dto.setDescription(authorization.getDescription());
+//		dto.setUsers(authorization.getUsers());
 		return dto;
 	}
 	
@@ -29,7 +30,8 @@ public class AuthorizationConverter {
 		Authorization authorization = new Authorization();
 		authorization.setId(dto.getId());
 		authorization.setName(dto.getName());
-		authorization.setDescription(dto.getDescription());				
+		authorization.setDescription(dto.getDescription());	
+//		authorization.setUsers(dto.getUsers());
 		return authorization;
 	}
 	

@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+
+import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,6 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_permission")
+
+@Repository
 public class Permission implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -25,17 +28,21 @@ public class Permission implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    @Size(max = 30)
+    @Column(nullable = false)
     private String name;
     
-    @Column(name = "description", nullable = false)
-    @Size(max = 100)
+    @Column(nullable = false)
     private String description;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "permissions", cascade = CascadeType.ALL)
-    private Set<Role> roles = new HashSet<>();
+    
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "permissions")
+//    private Set<Role> roles = new HashSet<>();
+//    
+//    public Permission(Long id, String name, String description) {
+//    	this.id=id;
+//    	this.name=name;
+//    	this.description=description;
+//    }
 }
     
     

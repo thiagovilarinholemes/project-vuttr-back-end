@@ -22,6 +22,7 @@ public class UserConverter implements Serializable{
 		dto.setPassword(user.getPassword());
 		dto.setUserStatus(user.getUserStatus());
 		dto.setRole(user.getRole());
+		dto.setAuthorizations(user.getAuthorizations());
 		return dto;
 	}
 		
@@ -42,6 +43,7 @@ public class UserConverter implements Serializable{
 		user.setPassword(dto.getPassword());
 		user.setUserStatus(dto.getUserStatus());
 		user.setRole(dto.getRole());	
+//		user.setAuthorizations(dto.getAuthorizations());
 		return user;
 	}
 	

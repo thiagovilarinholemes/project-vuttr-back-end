@@ -17,7 +17,7 @@ public class RoleConverter {
 		dto.setId(role.getId());
 		dto.setName(role.getName());
 		dto.setDescription(role.getDescription());		
-		dto.setUsers(role.getUsers());
+//		dto.setUsers(role.getUsers());
 		dto.setPermissions(role.getPermissions());
 		return dto;
 	}
@@ -32,7 +32,7 @@ public class RoleConverter {
 		role.setId(dto.getId());
 		role.setName(dto.getName());
 		role.setDescription(dto.getDescription());		
-		role.setUsers(dto.getUsers());
+//		role.setUsers(dto.getUsers());
 		role.setPermissions(dto.getPermissions());
 		return role;
 	}

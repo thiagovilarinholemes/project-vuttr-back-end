@@ -1,9 +1,12 @@
 package com.vuttr.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
 
+import com.vuttr.models.Authorization;
 import com.vuttr.models.Role;
 import com.vuttr.models.enums.UserStatus;
 
@@ -32,5 +35,6 @@ public class UserDTO implements Serializable{
 	
 
 	private Role role;
+	private Set<Authorization> authorizations = new HashSet<>();
 	
 }

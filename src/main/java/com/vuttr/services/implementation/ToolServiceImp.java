@@ -19,7 +19,6 @@ import com.vuttr.dto.ToolDTO;
 import com.vuttr.exceptions.DatabaseException;
 import com.vuttr.exceptions.ResourceNotFoundException;
 import com.vuttr.models.Tool;
-import com.vuttr.models.User;
 import com.vuttr.repositories.ToolRepository;
 import com.vuttr.services.ToolService;
 

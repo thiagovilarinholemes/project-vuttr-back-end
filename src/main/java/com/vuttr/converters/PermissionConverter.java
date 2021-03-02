@@ -19,7 +19,8 @@ public class PermissionConverter implements Serializable{
 		PermissionDTO dto = new PermissionDTO();
 		dto.setId(permission.getId());
 		dto.setName(permission.getName());
-		dto.setDescription(permission.getDescription());		
+		dto.setDescription(permission.getDescription());
+//		dto.setRoles(permission.getRoles());
 		return dto;
 	}
 		
@@ -36,7 +37,8 @@ public class PermissionConverter implements Serializable{
 		Permission permission = new Permission();
 		permission.setId(dto.getId());
 		permission.setName(dto.getName());
-		permission.setDescription(dto.getDescription());				
+		permission.setDescription(dto.getDescription());
+//		permission.setRoles(dto.getRoles());
 		return permission;
 	}
 	

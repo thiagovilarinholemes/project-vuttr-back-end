@@ -4,12 +4,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.vuttr.models.Authorization;
+import com.vuttr.models.Permission;
 import com.vuttr.models.User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@SuppressWarnings("unused")
 public class MyUserDetails implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
@@ -21,22 +26,23 @@ public class MyUserDetails implements UserDetails {
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
+        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 
-//        // Extract list of permissions (name)
+//         Extract list of permissions (name)
 //        for(Permission p: user.getRole().getPermissions()){
-//            GrantedAuthority authority = new SimpleGrantedAuthority(p.getNamePermission());
-//            authorities.add(authority);
+//            GrantedAuthority authority = new SimpleGrantedAuthority(p.getName());
+//            System.out.println(authority);
+////            authorities.add(authority);
 //        }
-//
-//        // Extract list of authorizations (name)
+
+        // Extract list of authorizations (name)
 //        for (Authorization a: user.getAuthorizations()){
-//            GrantedAuthority authority = new SimpleGrantedAuthority(a.getNameAuthorization());
+//            GrantedAuthority authority = new SimpleGrantedAuthority(a.getName());
 //            authorities.add(authority);
 //        }
 
         // Extract list of roles (name)
-        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getNameRole());
+        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName());
         authorities.add(authority);
 
         return authorities;

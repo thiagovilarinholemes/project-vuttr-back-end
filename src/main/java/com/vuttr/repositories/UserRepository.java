@@ -11,7 +11,7 @@ import com.vuttr.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	/* Query by Username */
+	/* Query by Email */
 	User findByEmail(String username);
 
 	/* Query All Users */
