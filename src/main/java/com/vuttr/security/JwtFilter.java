@@ -1,31 +1,31 @@
 package com.vuttr.security;
 
-import com.auth0.jwt.JWT;
-import com.vuttr.models.User;
-import com.vuttr.repositories.UserRepository;
-
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.auth0.jwt.JWT;
+import com.vuttr.models.User;
+import com.vuttr.repositories.UserRepository;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
-public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
-	
-    private UserRepository userRepository;
+import java.io.IOException;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
-        super(authenticationManager);
-        this.userRepository = userRepository;
-    }
+@Component
+public class JwtFilter extends OncePerRequestFilter {
+
+    @Autowired
+    private UserRepository userRepository;
+    
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {

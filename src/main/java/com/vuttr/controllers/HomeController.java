@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vuttr.security.AuthRequest;
 import com.vuttr.security.JwtUtil;
 
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,7 +29,7 @@ public class HomeController {
 	@Autowired
     private AuthenticationManager authenticationManager;
 	@Autowired
-	private JwtUtil jwtUtil;
+	private JwtUtil jwt;
 	
 	
 	/* Home */
@@ -79,6 +80,6 @@ public class HomeController {
         } catch (Exception ex) {
             throw new Exception("inavalid username/password");
         }
-        return "Bearer " + jwtUtil.generateToken(authRequest.getEmail());
+        return "Bearer " + jwt.generateToken(authRequest.getEmail());
     }
 }

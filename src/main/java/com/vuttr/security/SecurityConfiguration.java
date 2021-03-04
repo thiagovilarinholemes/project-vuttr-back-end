@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.vuttr.repositories.UserRepository;
 
@@ -26,6 +26,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	UserPrincipalDetailsService userPrincipalDetailsService; 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	JwtFilter jwtFilter;
 	
 	
     /* Configurations for authentication - login */
@@ -58,13 +60,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)	
                 .and()
                 
-                /* Add jwt filters (1. authentication, 2. authorization) */
-                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                /* Add jwt filters (1. authentication, 2. authorization) */                
+                .addFilter(new JwtAuthenticationFilter(authenticationManager()))                
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepository))
+                
                 .authorizeRequests()
 
                 /* configure access roles */
-                .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll()  
+                .antMatchers(HttpMethod.POST, "/api/authenticate").permitAll() 
+                .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers("/api/home").permitAll()  
                 .antMatchers("/api/logout").permitAll()
                 .antMatchers("/api/tools/**").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN", "ROLE_MANAGER")  	
@@ -87,6 +91,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		        .logoutSuccessUrl("/api/logout")
 		        .invalidateHttpSession(true)
 		        .deleteCookies("Authorization");
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     /* Configuration for static resources - CSS, Materialize... */
