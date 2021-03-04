@@ -31,6 +31,10 @@ import com.vuttr.converters.RoleConverter;
 import com.vuttr.dto.RoleDTO;
 import com.vuttr.services.implementation.RoleServiceImp;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value = "/api/roles")
 public class RoleController {
@@ -42,6 +46,16 @@ public class RoleController {
 	RoleConverter converter;
 	
 	/* List All Roles and Seach by Name */
+	@ApiOperation(value = "Retorna uma lista com todas roles e consulta por nome. \n"
+			+ "OBS.: Somente os usuários ADMIN e MANAGER tem permissão term permissão.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = ""
+	    		+ "Retorna a lista com todas roles - Ex.: /api/role \n "
+	    		+ "Consulta por nome da role - Ex.: /api/role?name=nome_role \n"
+	    		+ "Retorna a página indicada - page=numero_pagina, e o número de registros - size=quantidade_registros, por página - Ex.: /api/role?page=0&size=3"), 
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@GetMapping
 	public ResponseEntity<?> getAllRole(
 			@RequestParam(required = false) String name,
@@ -80,6 +94,13 @@ public class RoleController {
 	}
 	
 	/* Get Role by Id */
+	@ApiOperation(value = "Retorna uma role por ID. \n"
+			+ "OBS.: Somente os usuários ADMIN e MANAGER tem permissão.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Consultando uma role por ID - Ex.: /api/roles/numero_id"),	    		
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findByIdRole(@PathVariable Long id){
 		RoleDTO role = service.findByIdRole(id);
@@ -96,6 +117,20 @@ public class RoleController {
 	
 	/* Create Role */
 	@PostMapping
+	@ApiOperation(value = "Cria uma nova ferramenta. \n"
+			+ "OBS.: Somente os usuários ADMIN e MANAGER tem permissão.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = ""
+	    		+ "Criando uma nova role. Os dados da nova role devem ser passados por BODY em formato JSON\n"
+	    		+ "Ex.: /api/roles verbo HTTP PUT\n"
+	    		+ "JSON:\n"
+	    		+ "{\n"
+	    		+ "    \"nameRole\": \"ROLE_USER\",\n"
+	    		+ "    \"description\": \"Função de Teste do Sistema\"\n"
+	    		+ "}"),	    		
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	public ResponseEntity<?> create(@RequestBody @Valid RoleDTO role){
 		RoleDTO entity = service.create(role);
 		try {
@@ -110,6 +145,20 @@ public class RoleController {
 	}
 	
 	/* Update Role */
+	@ApiOperation(value = "Atualiza uma role. \n"
+			+ "OBS.: Somente os usuários ADMIN e MANAGER tem permissão.")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = ""
+					+ "O ID da role deve ser passado via URL Ex.: localhost:8080/api/role/id_ferramenta\n"
+		    		+ "e os dados da ferramenta devem ser passados por BODY em formato JSON\n"
+					+ "{\n"
+					+ "    \"id\": 4,\n"
+					+ "    \"nameRole\": \"ROLE_TEST - atualizado\",\n"
+					+ "    \"description\": \"Função de Teste do Sistema - atualizado\"\n"
+					+ "}"),	    		
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid RoleDTO role){	
 		try {
@@ -125,6 +174,13 @@ public class RoleController {
 	}
 	
 	/* Delete Role */
+	@ApiOperation(value = "Deleta uma role. \n"
+			+ "OBS.: Somente os usuários ADMIN e MANAGER tem permissão.")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Deleta uma role por ID. Ex.: localhost:8080/api/roles/id_função\\n"),	    		
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		String msg = service.delete(id);

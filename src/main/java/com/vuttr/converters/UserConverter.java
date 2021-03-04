@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 import com.vuttr.dto.UserDTO;
 import com.vuttr.models.User;
 
+
 @Component
 public class UserConverter implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	/* Converter Models to DTO */
 	public UserDTO entityToDto(User user) {
 		UserDTO dto = new UserDTO();
@@ -22,10 +23,12 @@ public class UserConverter implements Serializable{
 		dto.setPassword(user.getPassword());
 		dto.setUserStatus(user.getUserStatus());
 		dto.setRole(user.getRole());
-		dto.setAuthorizations(user.getAuthorizations());
+//		dto.setAuthorizations(user.getAuthorizations());
+		
+		
 		return dto;
 	}
-		
+			
 	public List<UserDTO> entityToDto(List<User> user ){
 		return	user.stream().map(x -> entityToDto(x)).collect(Collectors.toList());
 	}
@@ -42,7 +45,7 @@ public class UserConverter implements Serializable{
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
 		user.setUserStatus(dto.getUserStatus());
-		user.setRole(dto.getRole());	
+		user.setRole(dto.getRole());
 //		user.setAuthorizations(dto.getAuthorizations());
 		return user;
 	}

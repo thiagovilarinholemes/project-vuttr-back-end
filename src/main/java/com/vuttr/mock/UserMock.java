@@ -54,20 +54,20 @@ public class UserMock implements CommandLineRunner{
 //        authorizationRepository.saveAll(Arrays.asList(a1, a2, a3, a4));
 		
 		/* Insert Roles Database */		
-		Role r1 = new Role(null, "ROLE_ADMIN", "Função de Administrador do Sistema");
-		Role r2 = new Role(null, "ROLE_MANAGER", "Função de Gerente do Sistema");
-		Role r3 = new Role(null, "ROLE_USER", "Função de Usuário do Sistema");
-		roleRepository.saveAll(Arrays.asList(r1, r2, r3));
+//		Role r1 = new Role(null, "ROLE_ADMIN", "Função de Administrador do Sistema");
+//		Role r2 = new Role(null, "ROLE_MANAGER", "Função de Gerente do Sistema");
+//		Role r3 = new Role(null, "ROLE_USER", "Função de Usuário do Sistema");
+//		roleRepository.saveAll(Arrays.asList(r1, r2, r3));
 		
 		/* Insert Users Database */		
-		User u1 = new User(null, "Thiago Vilarinho Lemes", "thiago", passwordEncoder.encode("123"), UserStatus.ACTIVE, r1);
-		User u2 = new User(null, "Carina Lima", "carina", passwordEncoder.encode("123"), UserStatus.ACTIVE, r2);
-		User u3 = new User(null, "Spack Rella", "spack.rella", passwordEncoder.encode("123"), UserStatus.BLOCKED, r3);
-		User u4 = new User(null, "Rosimar Vilarinho", "rosimar.lemes", passwordEncoder.encode("123"), UserStatus.SUSPENDED, r3);
-		User u5 = new User(null, "Juscelino Lemes", "juscelino.lemes", passwordEncoder.encode("123"), UserStatus.BLOCKED, r3);
-		User u6 = new User(null, "Carol V.", "carol.lemes", passwordEncoder.encode("123"), UserStatus.BLOCKED, r2);
-		User u7 = new User(null, "Luíz Souza", "luiz.fulano", passwordEncoder.encode("123"), UserStatus.BLOCKED, r2);
-		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7));	
+//		User u1 = new User(null, "Thiago Vilarinho Lemes", "thiago", passwordEncoder.encode("123"), UserStatus.ACTIVE, r1);
+//		User u2 = new User(null, "Carina Lima", "carina", passwordEncoder.encode("123"), UserStatus.ACTIVE, r2);
+//		User u3 = new User(null, "Spack Rella", "spack.rella", passwordEncoder.encode("123"), UserStatus.BLOCKED, r3);
+//		User u4 = new User(null, "Rosimar Vilarinho", "rosimar.lemes", passwordEncoder.encode("123"), UserStatus.SUSPENDED, r3);
+//		User u5 = new User(null, "Juscelino Lemes", "juscelino.lemes", passwordEncoder.encode("123"), UserStatus.BLOCKED, r3);
+//		User u6 = new User(null, "Carol V.", "carol.lemes", passwordEncoder.encode("123"), UserStatus.BLOCKED, r2);
+//		User u7 = new User(null, "Luíz Souza", "luiz.fulano", passwordEncoder.encode("123"), UserStatus.BLOCKED, r2);
+//		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6, u7));	
 		
 		  /* Created association Role and Permission */
 //        r1.getPermissions().add(p1);

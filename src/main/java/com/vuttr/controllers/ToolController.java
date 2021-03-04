@@ -31,6 +31,10 @@ import com.vuttr.converters.ToolConverter;
 import com.vuttr.dto.ToolDTO;
 import com.vuttr.services.implementation.ToolServiceImp;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping(value = "/api/tools")
 public class ToolController {
@@ -43,6 +47,15 @@ public class ToolController {
 	
 
 	/* List All Tools and Seach by Tag */
+	@ApiOperation(value = "Retorna uma lista com todas as ferramentas. \n"
+			+ "OBS.: Todos os usuários cadastrados no sitema tem acesso.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = ""
+	    		+ "Retorna uma lista com todas as ferramentas - Ex.: /api/tools \n "
+	    		+ "Consulta por nome da ferramenta - Ex.: /api/tools?name=nome_ferramenta \n"
+	    		+ "Retorna a página indicada - page=numero_pagina, e o número de registros - size=quantidade_registros, por página - Ex.: /api/tools?page=0&size=3"), 
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@GetMapping
 	public ResponseEntity<?> getAllTool(
 			@RequestParam(required = false) String tag,
@@ -81,6 +94,13 @@ public class ToolController {
 	}
 	
 	/* Get Tool by Id */
+	@ApiOperation(value = "Retorna uma ferramenta por ID. \n"
+			+ "OBS.: Todos os usuários cadastrados no sitema tem acesso.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Consultando uma ferramenta por ID - Ex.: /api/users/numero_id"),	    		
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findByIdTool(@PathVariable Long id){
 		ToolDTO tool = service.findByIdTool(id);
@@ -96,6 +116,22 @@ public class ToolController {
 	}
 	
 	/* Create Tool */
+	@ApiOperation(value = "Cria uma nova ferramenta. \n"
+			+ "OBS.: Todos os usuários cadastrados no sitema tem acesso.")
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = ""
+	    		+ "Criando uma nova ferramenta. Os dados da nova ferramenta devem ser passados por BODY em formato JSON\n"
+	    		+ "Ex.: /api/tools verbo HTTP POST"
+	    		+ "JSON:\n"
+	    		+ "{\n"
+	    		+ "    \"title\": \"ReactJS\",\n"
+	    		+ "    \"link\": \"https://pt-br.reactjs.org/\",\n"
+	    		+ "    \"description\": \"Framework ReactJS - JavaScript / TypeScript\",\n"
+	    		+ "    \"tags\": \"ReactJS JavaScript TypeScript\"\n"
+	    		+ "}"),	    		
+	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@PostMapping
 	public ResponseEntity<?> create(@RequestBody @Valid ToolDTO tool){
 		ToolDTO entity = service.create(tool);
@@ -111,6 +147,22 @@ public class ToolController {
 	}
 	
 	/* Update Tool */
+	@ApiOperation(value = "Atualiza uma ferramenta. \n"
+			+ "OBS.: Todos os usuários cadastrados no sitema tem acesso.")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = ""
+					+ "O ID da ferramenta deve ser passado via URL Ex.: localhost:8080/api/tools/id_ferramenta\n"
+		    		+ "e os dados da ferramenta devem ser passados por BODY em formato JSON\n"
+		    		+ "Ex.: /api/tools verbo HTTP PUT"
+					+ "{\n"
+					+ "    \"title\": \"ReactJS\",\n"
+					+ "    \"link\": \"https://pt-br.reactjs.org/\",\n"
+					+ "    \"description\": \"Framework ReactJS - JavaScript / TypeScript\",\n"
+					+ "    \"tags\": \"ReactJS JavaScript TypeScript\"\n"
+					+ "}"),	    		
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@SuppressWarnings("null")
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid ToolDTO tool){
@@ -128,6 +180,13 @@ public class ToolController {
 	}
 	
 	/* Delete Tool */
+	@ApiOperation(value = "Deleta uma ferramenta. \n"
+			+ "OBS.: Todos os usuários cadastrados no sitema tem acesso.")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Deleta uma ferramenta por ID. Ex.: localhost:8080/api/tools/id_ferramenta\\n"),	    		
+			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		String msg = service.delete(id);

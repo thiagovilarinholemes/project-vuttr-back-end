@@ -1,12 +1,9 @@
 package com.vuttr.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
 
-import com.vuttr.models.Authorization;
 import com.vuttr.models.Role;
 import com.vuttr.models.enums.UserStatus;
 
@@ -22,19 +19,19 @@ public class UserDTO implements Serializable{
 	
 	private Long id;
 	
-	@NotBlank(message = "O campo NOME é obrigatório!")
+	@NotBlank(message = "O NOME é obrigatório!")
     private String name;
 	
-	@NotBlank(message = "O campo USER NAME é obrigatório!")
+	@NotBlank(message = "O EMAIL é obrigatório!")
     private String email;
 	
-	@NotBlank(message = "O campo SENHA é obrigatório!")
+	@NotBlank(message = "A SENHA é obrigatória!")
     private String password;
 	
     private UserStatus userStatus;     
 	
 
 	private Role role;
-	private Set<Authorization> authorizations = new HashSet<>();
+//	private Set<Authorization> authorizations = new HashSet<>();
 	
 }

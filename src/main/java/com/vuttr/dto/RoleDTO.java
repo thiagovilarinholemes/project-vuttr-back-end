@@ -1,13 +1,8 @@
 package com.vuttr.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
-
-import com.vuttr.models.Permission;
-import com.vuttr.models.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +23,6 @@ public class RoleDTO implements Serializable{
 	private String description;
 	
 	
-	private Set<User> users = new HashSet<>();
-	private Set<Permission> permissions = new HashSet<>();
+//	private Set<User> users = new HashSet<>();
+//	private Set<Permission> permissions = new HashSet<>();
 }

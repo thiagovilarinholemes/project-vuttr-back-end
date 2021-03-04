@@ -21,6 +21,7 @@ public class UserPrincipalDetailsService implements UserDetailsService{
 		User user = repository.findByEmail(username);
 		MyUserDetails userPrincipal = new MyUserDetails(user);
         return userPrincipal;		
+		
 	}	
 
 }
