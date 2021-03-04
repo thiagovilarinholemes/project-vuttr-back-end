@@ -56,7 +56,7 @@ public class ToolController {
 	    		+ "Retorna a página indicada - page=numero_pagina, e o número de registros - size=quantidade_registros, por página - Ex.: /api/tools?page=0&size=3"), 
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
 	})
-	@GetMapping
+	@GetMapping(produces = "application/json")
 	public ResponseEntity<?> getAllTool(
 			@RequestParam(required = false) String tag,
 	        @RequestParam(defaultValue = "0") int page,
@@ -101,7 +101,7 @@ public class ToolController {
 	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
 	})
-	@GetMapping("/{id}")
+	@GetMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<?> findByIdTool(@PathVariable Long id){
 		ToolDTO tool = service.findByIdTool(id);
 		try {
@@ -132,7 +132,7 @@ public class ToolController {
 	    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
 	    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
 	})
-	@PostMapping
+	@PostMapping(produces = "application/json")
 	public ResponseEntity<?> create(@RequestBody @Valid ToolDTO tool){
 		ToolDTO entity = service.create(tool);
 		try {
@@ -164,7 +164,7 @@ public class ToolController {
 			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
 	})
 	@SuppressWarnings("null")
-	@PutMapping("/{id}")
+	@PutMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid ToolDTO tool){
 		
 		try {
@@ -187,7 +187,7 @@ public class ToolController {
 			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
 			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
 	})
-	@DeleteMapping("/{id}")
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		String msg = service.delete(id);
 		try {

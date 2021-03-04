@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import springfox.documentation.builders.PathSelectors;
+
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;
 import springfox.documentation.schema.ModelRef;
@@ -28,10 +28,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 		return new Docket(DocumentationType.SWAGGER_2)
 		.select()
 		.apis(RequestHandlerSelectors.basePackage("com.vuttr.controllers"))
-		.paths(PathSelectors.ant("/api/*"))
 		.build()	
 		.useDefaultResponseMessages(false)
-        .globalResponseMessage(RequestMethod.GET, responseMessageForGET())
+        .globalResponseMessage(RequestMethod.GET, responseMessageForGET())        
 		.apiInfo(metaData());
 	}
 	

@@ -196,7 +196,7 @@ public class UserController {
 			@ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
 			@ApiResponse(code = 500, message = "Foi gerada uma exceção."),
 	})
-	@DeleteMapping("/{id}")
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		String msg = service.delete(id);
 		try {

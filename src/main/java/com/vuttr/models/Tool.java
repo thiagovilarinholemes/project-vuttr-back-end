@@ -26,7 +26,6 @@ public class Tool implements Serializable{
     @Column(nullable = false)
     private String description;
     
-//    @Lob
     @Column(nullable = false)
     private String tags;
 
