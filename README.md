@@ -23,6 +23,7 @@
     <li>
       <a href="#uri">URI</a>
       <ul>
+         <li><a href="#home">Home</a></li>
         <li><a href="#autenticação">Autenticação</a></li>
         <li><a href="#usuário">Usuário</a></li>
         <li><a href="#função">Função</a></li>
@@ -75,7 +76,7 @@ URI para acesso a API.
 Para ter acesso as ferramentas - Tools, o usuário deve estar logado.
 
 <!-- Home -->
-### Autenticação
+### Home
 * GET `/api/home`
 
 <!-- Autenticação -->
@@ -85,8 +86,8 @@ Para ter acesso as ferramentas - Tools, o usuário deve estar logado.
   JSON enviado pelo body:
   ```
   {
-    "username": "thiago",
-    "password": "123"
+    "email": "email",
+    "pass": "senha"
   }
   ```
 
