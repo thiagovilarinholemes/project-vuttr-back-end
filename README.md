@@ -1,4 +1,4 @@
-# Projeto Vuttr Back-end - `em construção`
+# Projeto Vuttr Back-end
 
 ![](/assets/images/background.png)
 
@@ -21,7 +21,7 @@
       </ul>
     </li>
     <li>
-      <a href="#uri-dos-controlles">URI dos controllers</a>
+      <a href="#uri">URI</a>
       <ul>
         <li><a href="#autenticação">Autenticação</a></li>
         <li><a href="#usuário">Usuário</a></li>
@@ -68,13 +68,27 @@ Para iniciar o projeto é necessário baixar o repositório e importar para IDE(
 * [Postgres](https://www.postgresql.org/download/)
 
 <!-- URI -->
-## URI dos controllers
+## URI
 
-URI para acesso a API
+URI para acesso a API.
+
+Para ter acesso as ferramentas - Tools, o usuário deve estar logado.
+
+<!-- Home -->
+### Autenticação
+* GET `/api/home`
 
 <!-- Autenticação -->
 ### Autenticação
 * POST `/api/authenticate`
+
+  JSON enviado pelo body:
+  ```
+  {
+    "username": "thiago",
+    "password": "123"
+  }
+  ```
 
 <b>OBS.: </b> O Token é retornado no body
 
