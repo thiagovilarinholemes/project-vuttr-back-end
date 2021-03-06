@@ -70,7 +70,20 @@ public class HomeController {
 	}
 
 	
-	
+	/* Login */
+	@ApiOperation(value = "Método para logar no sistema.")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 200, message = ""
+		    		+ "Gerando token. Os dados da autenticação devem ser passados por BODY em formato JSON\n"
+		    		+ "Ex.: /api/authenticate verbo HTTP POST\n"
+		    		+ "JSON:\n"
+		    		+ "{\n"
+		    		+ "    \"email\": \"email_de_acesso\",\n"
+		    		+ "    \"pass\": \"senha\"\n"
+		    		+ "}"),	    		
+		    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso."),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção."),
+	})
 	@PostMapping("/authenticate")
     public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
         try {
