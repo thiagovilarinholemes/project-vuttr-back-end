@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,6 +31,8 @@ public class HomeController {
     private AuthenticationManager authenticationManager;
 	@Autowired
 	private JwtUtil jwt;
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	
 	/* Home */
@@ -41,6 +44,7 @@ public class HomeController {
 	})
 	@GetMapping(value = "/home", produces = "application/json" )
 	public ResponseEntity<String> home() {
+		System.out.print(passwordEncoder.encode("123"));
 		String mensage = "Bem vindo a Vuttr!!!";
 		return ResponseEntity.ok().body(mensage);
 	}
