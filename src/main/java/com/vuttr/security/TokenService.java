@@ -23,7 +23,7 @@ public class TokenService {
 		Date exp = new Date(now.getTime() + JwtProperties.EXPIRATION_TIME);
 
 		return Jwts.builder().setIssuer("IRS").setSubject(usuario.getId().toString()).setIssuedAt(new Date())
-				.setExpiration(exp).signWith(SignatureAlgorithm.HS256, JwtProperties.SECRET).compact();
+				.setExpiration(exp).signWith(SignatureAlgorithm.HS512, JwtProperties.SECRET).compact();
 	}
 	
 	/* Checks the token is valid */
